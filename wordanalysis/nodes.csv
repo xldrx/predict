@@ -1,0 +1,398 @@
+id	Name	Category
+0	BGP Data	BGP Routing Data
+1	PCH - Cable System Topology	Infrastructure Data
+2	Netflow-1	Traffic Flow Data
+3	Netflow-2	Traffic Flow Data
+4	Netflow-3	Traffic Flow Data
+5	200paul.woodynet.pch.net.xml	BGP Routing Data
+6	bdix.woodynet.pch.net	BGP Routing Data
+7	npix.woodynet.pch.net	BGP Routing Data
+8	equinix-la.woodynet.pch.net	BGP Routing Data
+9	laiix.woodynet.pch.net	BGP Routing Data
+10	UCSD Real-time Network Telescope Data	Blackhole Address Space Data
+11	BGP Logs	BGP Routing Data
+12	CSUSpamLogs	Unsolicited Bulk Email Data
+13	usc_lander_ongoing_tracing_scrambled-20120501	IP Packet Headers
+14	Active Topology Measurements with Skitter	Internet Topology Data
+15	netnod.woodynet.pch.net	BGP Routing Data
+16	hkix.woodynet.pch.net	BGP Routing Data
+17	IPv4 Routed /24 Topology	Internet Topology Data
+18	IPv4 Routed /24 DNS Names	Internet Topology Data
+19	IPReputationList	Unsolicited Bulk Email Data
+20	PCH - IXP Member Lists	Infrastructure Data
+21	Longitudinal Darknet 35/8	Blackhole Address Space Data
+22	PCH - BGP routing table data	BGP Routing Data
+23	PCH - BGP Outage Data	BGP Routing Data
+24	E2ENRM	Performance and Quality Measurements
+25	linx.woodynet.pch.net	BGP Routing Data
+26	equinix-ashburn.woodynet.pch.net	BGP Routing Data
+27	nyiix.woodynet.pch.net	BGP Routing Data
+28	amsix.woodynet.pch.net	BGP Routing Data
+29	equinix-sin.woodynet.pch.net	BGP Routing Data
+30	Darknet 5/8	Blackhole Address Space Data
+31	Backscatter-tocs	Blackhole Address Space Data
+32	DoS_80_timeseries-20020629	IP Packet Headers
+33	DoS_traces-20020629	IP Packet Headers
+34	August 14, 2002 OC48 Peering Point Trace	IP Packet Headers
+35	PCH - Routing Prefix Origin Inconsistencies	BGP Routing Data
+36	IPv6 Topology	Internet Topology Data
+37	FRGPContinuousFlowData	Traffic Flow Data
+38	as_to_org_mapping_inferred_truth-20100507	Internet Topology Data
+39	PCH - DNS Query Metadata	DNS Data
+40	January 15, 2003 OC48 Peering Point Trace	IP Packet Headers
+41	April 24, 2003 OC48 Peering Point Trace	IP Packet Headers
+42	internet_address_survey_icmp1-20030601	Address Space Allocation Data
+43	internet_address_survey_icmp2-20031008	Address Space Allocation Data
+44	internet_address_survey_tcp1-20031120	Address Space Allocation Data
+45	ims-witty	Blackhole Address Space Data
+46	Witty Worm Dataset	Blackhole Address Space Data
+47	ims-trend-1	Blackhole Address Space Data
+48	ims-bagle_backdoor	Blackhole Address Space Data
+49	ims-mydoom_backdoor	Blackhole Address Space Data
+50	ims-sasser	Blackhole Address Space Data
+51	ims-dabber	Blackhole Address Space Data
+52	Backscatter-2004-2005	Blackhole Address Space Data
+53	internet_address_survey_it1-20040621	Address Space Allocation Data
+54	internet_address_survey_it2-20040830	Address Space Allocation Data
+55	p2p_detection-20050830	IP Packet Headers
+56	internet_address_survey_it7-20050902	Address Space Allocation Data
+57	Skaion 2006 IARPA Dataset	Synthetically Generated Data
+58	internet_address_survey_it9-20051214	Address Space Allocation Data
+59	Backscatter-2006	Blackhole Address Space Data
+60	ims-tcp6101_veritas	Blackhole Address Space Data
+61	ims-mysqlbot	Blackhole Address Space Data
+62	internet_address_survey_it5-20050225	Address Space Allocation Data
+63	DSHIELD Logs	IDS and Firewall Data 
+64	internet_address_survey_it6-20050701	Address Space Allocation Data
+65	internet_address_survey_standing_j-20060425	Address Space Allocation Data
+66	internet_address_survey_standing_w-20060425	Address Space Allocation Data
+67	internet_address_survey_reprobing_it12w-20060425	Address Space Allocation Data
+68	internet_address_survey_it13w-20060616	Address Space Allocation Data
+69	internet_address_hitlist_it28w-beta-20090914	Address Space Allocation Data
+70	internet_address_survey_it11e-20060307	Address Space Allocation Data
+71	internet_address_survey_it11w-20060307	Address Space Allocation Data
+72	internet_address_survey_it12e-20060413	Address Space Allocation Data
+73	internet_address_survey_it12w-20060413	Address Space Allocation Data
+74	internet_address_survey_standing_c-20060425	Address Space Allocation Data
+75	internet_address_survey_it13e-20060711	Address Space Allocation Data
+76	internet_address_survey_it14e-20060914	Address Space Allocation Data
+77	internet_address_survey_it14w-20060914	Address Space Allocation Data
+78	internet_address_hitlist_it29w-20091102	Address Space Allocation Data
+79	passive_active-20060919	IP Packet Headers
+80	internet_address_survey_it3-20041108	Address Space Allocation Data
+81	UniformAttack_Traces_Generated20070821-20041202	IP Packet Headers
+82	Bottleneck_traces-20041202	IP Packet Headers
+83	ims-tcp42_wins	Blackhole Address Space Data
+84	internet_address_survey_it4-20050105	Address Space Allocation Data
+85	internet_address_survey_it15w-20061108	Address Space Allocation Data
+86	Backscatter-2007	Blackhole Address Space Data
+87	UniformAttack_traces-20070115	IP Packet Headers
+88	internet_address_survey_it16e-20070214	Address Space Allocation Data
+89	internet_address_survey_it16w-20070214	Address Space Allocation Data
+90	p2p_detection-20061003	IP Packet Headers
+91	attack-tcpsyn-20061106	IP Packet Headers
+92	attack-udp22-20061106	IP Packet Headers
+93	internet_address_survey_it15e-20061108	Address Space Allocation Data
+94	internet_address_hitlist_it30w-20091223	Address Space Allocation Data
+95	internet_address_hitlist_it31w-20100602	Address Space Allocation Data
+96	internet_address_hitlist_it31w-20100208	Address Space Allocation Data
+97	internet_address_survey_reprobing_it16w-20070216	Address Space Allocation Data
+98	internet_address_survey_it17e-20070529	Address Space Allocation Data
+99	internet_address_survey_it17w-20070529	Address Space Allocation Data
+100	internet_address_hitlist_it32w-20100329	Address Space Allocation Data
+101	internet_address_survey_reprobing_it17w-20070601	Address Space Allocation Data
+102	internet_address_survey_reprobing_it18w-20070914	Address Space Allocation Data
+103	internet_address_survey_it18w-20070914	Address Space Allocation Data
+104	internet_address_hitlist_it33w-20100514	Address Space Allocation Data
+105	The Industry Evaluation IPv4 and IPv6 Topology Dataset	Internet Topology Data
+106	internet_address_survey_reprobing_it19w-20080208	Address Space Allocation Data
+107	Backscatter-2008	Blackhole Address Space Data
+108	internet_address_survey_it20w-20080229	Address Space Allocation Data
+109	internet_address_hitlist_it35w-20100818	Address Space Allocation Data
+110	survey_validation_tcpvsicmp-20071009	Address Space Allocation Data
+111	tcp-reset-study-20071107	IP Packet Headers
+112	internet_address_survey_it19w-20071218	Address Space Allocation Data
+113	internet_address_survey_it19e-20071218	Address Space Allocation Data
+114	internet_address_hitlist_it34w-20100707	Address Space Allocation Data
+115	internet_address_hitlist_it36w-20101005	Address Space Allocation Data
+116	internet_address_survey_it21w-20080617	Address Space Allocation Data
+117	internet_address_survey_it21e-20080717	Address Space Allocation Data
+118	lander_sample-20080903	IP Packet Headers
+119	internet_address_survey_it22e-20080911	Address Space Allocation Data
+120	internet_address_survey_it20e-20080317	Address Space Allocation Data
+121	DITL_I2-20080317	IP Packet Headers
+122	internet_address_survey_reprobing_it20w-20080411	Address Space Allocation Data
+123	NCCDC 2008	Synthetically Generated Data
+124	internet_address_survey_reprobing_it21w-20080617	Address Space Allocation Data
+125	internet_address_survey_it22c-20080911	Address Space Allocation Data
+126	internet_address_survey_it22w-20080911	Address Space Allocation Data
+127	internet_address_hitlist_it37w-20101124	Address Space Allocation Data
+128	internet_address_survey_reprobing_it22w-20080912	Address Space Allocation Data
+129	classify_internet_address_blocks-20080912	Address Space Allocation Data
+130	usc_lander_tcp_syns-20081010	IP Packet Headers
+131	Two-Days-in-2008 Telescope Dataset	Blackhole Address Space Data
+132	Three Days Of Conficker Dataset	Blackhole Address Space Data
+133	internet_address_hitlist_it38w-20110112	Address Space Allocation Data
+134	internet_address_survey_it23e-20081125	Address Space Allocation Data
+135	internet_address_survey_it23w-20081125	Address Space Allocation Data
+136	internet_address_survey_reprobing_it23w-20081125	Address Space Allocation Data
+137	internet_address_survey_it23c-20081125	Address Space Allocation Data
+138	internet_address_survey_reprobing_it24w-20090203	Address Space Allocation Data
+139	internet_address_survey_it24c-20090203	Address Space Allocation Data
+140	internet_address_survey_it24w-20090203	Address Space Allocation Data
+141	internet_address_hitlist_it39w-20110220	Address Space Allocation Data
+142	internet_address_hitlist_it40w-20110406	Address Space Allocation Data
+143	internet_address_survey_it25c-20090319	Address Space Allocation Data
+144	internet_address_survey_it25w-20090319	Address Space Allocation Data
+145	internet_address_survey_reprobing_it25w-20090319	Address Space Allocation Data
+146	internet_address_hitlist_it41w-20110520	Address Space Allocation Data
+147	internet_address_survey_it26w-20090527	Address Space Allocation Data
+148	internet_address_survey_it26c-20090527	Address Space Allocation Data
+149	internet_address_survey_reprobing_it26w-20090527	Address Space Allocation Data
+150	long_flows_D1_2_days-20090605	Traffic Flow Data
+151	long_flows_D1_2_days-anonymized-20090605	Traffic Flow Data
+152	iperf_emulated_attacks-20090621	IP Packet Headers
+153	internet_address_survey_it27c-20090727	Address Space Allocation Data
+154	internet_address_survey_it27w-20090727	Address Space Allocation Data
+155	internet_address_survey_reprobing_it27w-20090727	Address Space Allocation Data
+156	internet_address_hitlist_it42w-20110726	Address Space Allocation Data
+157	internet_address_history_it43w-20110913	Address Space Allocation Data
+158	internet_address_hitlist_it43w-20110913	Address Space Allocation Data
+159	internet_address_survey_it28w-20090914	Address Space Allocation Data
+160	internet_address_survey_reprobing_it28w-20090914	Address Space Allocation Data
+161	internet_address_survey_it28c-20090914	Address Space Allocation Data
+162	internet_address_survey_reprobing_it28c-20090928	Address Space Allocation Data
+163	internet_address_census_standing_c-20091102	Address Space Allocation Data
+164	internet_address_census_standing_j-20091102	Address Space Allocation Data
+165	internet_address_census_standing_w-20091102	Address Space Allocation Data
+166	internet_address_hitlist_standing_w-20091102	Address Space Allocation Data
+167	internet_address_hitlist_it44w-20111102	Address Space Allocation Data
+168	internet_address_census_it29c-20091102	Address Space Allocation Data
+169	internet_address_census_it29w-20091102	Address Space Allocation Data
+170	ITDK 2010-01	Internet Topology Data
+171	internet_address_census_it30c-20091223	Address Space Allocation Data
+172	internet_address_census_it30w-20091223	Address Space Allocation Data
+173	internet_address_history_it45w-20120102	Address Space Allocation Data
+174	internet_address_hitlist_it45w-20120102	Address Space Allocation Data
+175	internet_address_history_it44w-20111102	Address Space Allocation Data
+176	internet_address_survey_reprobing_it29w-20091102	Address Space Allocation Data
+177	Skaion 2009 DARPA Dataset	Synthetically Generated Data
+178	internet_address_survey_reprobing_it29w-20091103	Address Space Allocation Data
+179	internet_address_survey_reprobing_it29c-20091117	Address Space Allocation Data
+180	internet_outage_survey_it30w-20091223	Internet Topology Data
+181	internet_address_survey_reprobing_it30w-20091223	Address Space Allocation Data
+182	Darknet 191/8	Blackhole Address Space Data
+183	internet_address_survey_reprobing_it30c-20100106	Address Space Allocation Data
+184	internet_address_history_it46w-20120309	Address Space Allocation Data
+185	internet_address_hitlist_it46w-20120309	Address Space Allocation Data
+186	internet_adddress_census_it31w-20100208	Address Space Allocation Data
+187	internet_address_census_it31c-20100208	Address Space Allocation Data
+188	internet_address_census_it31w-20100208	Address Space Allocation Data
+189	internet_address_survey_reprobing_it31w-20100208	Address Space Allocation Data
+190	long_flows_D8_2_weeks-20100221	Traffic Flow Data
+191	long_flows_D8_2_weeks-anonymized-20100221	Traffic Flow Data
+192	Darknet 1/8	Blackhole Address Space Data
+193	internet_address_survey_reprobing_it31c-20100226	Address Space Allocation Data
+194	Darknet 50/8	Blackhole Address Space Data
+195	ITDK 2010-04	Internet Topology Data
+196	Darknet 107/8	Blackhole Address Space Data
+197	internet_address_census_it32c-20100329	Address Space Allocation Data
+198	internet_address_census_it32w-20100329	Address Space Allocation Data
+199	internet_address_history_it47w-20120427	Address Space Allocation Data
+200	internet_address_hitlist_it47w-20120427	Address Space Allocation Data
+201	internet_address_survey_reprobing_it32w-20100329	Address Space Allocation Data
+202	internet_address_survey_reprobing_it32c-20100413	Address Space Allocation Data
+203	Darknet 14/8	Blackhole Address Space Data
+204	Darknet 223/8	Blackhole Address Space Data
+205	internet_address_census_it33c-20100514	Address Space Allocation Data
+206	internet_address_census_it33w-20100514	Address Space Allocation Data
+207	internet_address_history_it48w-20120615	Address Space Allocation Data
+208	internet_address_hitlist_it48w-20120615	Address Space Allocation Data
+209	internet_address_survey_reprobing_it33w-20100514	Address Space Allocation Data
+210	Darknet 181/8	Blackhole Address Space Data
+211	internet_address_census_it34c-20100707	Address Space Allocation Data
+212	internet_address_census_it34w-20100707	Address Space Allocation Data
+213	internet_address_hitlist_it49w-20120731	Address Space Allocation Data
+214	internet_address_history_it49w-20120731	Address Space Allocation Data
+215	classify_internet_address_blocks-20100521	Address Space Allocation Data
+216	Darknet 31/8	Blackhole Address Space Data
+217	Darknet 176/8	Blackhole Address Space Data
+218	Kraken Botnet Sinkhole Connection Data	Sinkhole Data
+219	internet_address_survey_reprobing_it33c-20100601	Address Space Allocation Data
+220	internet_address_survey_reprobing_it34w-20100707	Address Space Allocation Data
+221	ITDK 2010-07	Internet Topology Data
+222	Darknet 177/8	Blackhole Address Space Data
+223	internet_address_survey_reprobing_it34c-20100728	Address Space Allocation Data
+224	Darknet 49/8	Blackhole Address Space Data
+225	Darknet 101/8	Blackhole Address Space Data
+226	internet_address_census_it35c-20100818	Address Space Allocation Data
+227	internet_address_history_it50w-20120926	Address Space Allocation Data
+228	internet_address_hitlist_it50w-20120926	Address Space Allocation Data
+229	internet_address_census_it35w-20100818	Address Space Allocation Data
+230	internet_address_survey_reprobing_it35w-20100818	Address Space Allocation Data
+231	internet_address_survey_reprobing_it35c-20100902	Address Space Allocation Data
+232	internet_address_history_it51w-20121116	Address Space Allocation Data
+233	internet_address_hitlist_it51w-20121116	Address Space Allocation Data
+234	internet_address_census_it36c-20101005	Address Space Allocation Data
+235	internet_address_census_it36w-20101005	Address Space Allocation Data
+236	internet_address_survey_reprobing_it36w-20101005	Address Space Allocation Data
+237	as_to_org_mapping_subsidiary_linkage-20101019	Internet Topology Data
+238	as_to_org_mapping-20101019	Internet Topology Data
+239	internet_address_survey_reprobing_it36c-20101019	Address Space Allocation Data
+240	Darknet 36/8	Blackhole Address Space Data
+241	Darknet 42/8	Blackhole Address Space Data
+242	internet_address_history_it52w-20130102	Address Space Allocation Data
+243	internet_address_hitlist_it52w-20130102	Address Space Allocation Data
+244	internet_address_census_it37w-20101124	Address Space Allocation Data
+245	internet_address_census_it37c-20101124	Address Space Allocation Data
+246	internet_address_survey_reprobing_it37w-20101124	Address Space Allocation Data
+247	internet_address_survey_reprobing_it37c-20101209	Address Space Allocation Data
+248	Darknet 105/8	Blackhole Address Space Data
+249	Darknet 23/8	Blackhole Address Space Data
+250	internet_address_census_it38w-20110112	Address Space Allocation Data
+251	internet_address_census_it38c-20110112	Address Space Allocation Data
+252	internet_address_survey_reprobing_it38w-20110112	Address Space Allocation Data
+253	Darkhex (6 concurrent /8 collections)	Blackhole Address Space Data
+254	internet_address_survey_reprobing_it38c-20110127	Address Space Allocation Data
+255	Darknet 45/8	Blackhole Address Space Data
+256	Darknet 37/8	Blackhole Address Space Data
+257	Darknet 100/8	Blackhole Address Space Data
+258	internet_address_history_it53w-20130222	Address Space Allocation Data
+259	internet_address_hitlist_it53w-20130222	Address Space Allocation Data
+260	Darknet 39/8	Blackhole Address Space Data
+261	Darknet 106/8	Blackhole Address Space Data
+262	internet_address_history_it54w-20130430	Address Space Allocation Data
+263	internet_address_hitlist_it54w-20130430	Address Space Allocation Data
+264	internet_address_census_it39w-20110220	Address Space Allocation Data
+265	internet_address_census_it39c-20110220	Address Space Allocation Data
+266	internet_address_survey_reprobing_it39w-20110220	Address Space Allocation Data
+267	FCC US ISP Broadband Performance Characterization	Performance and Quality Measurements
+268	Darknet 185/8	Blackhole Address Space Data
+269	Darknet 179/8	Blackhole Address Space Data
+270	Darknet 102/8	Blackhole Address Space Data
+271	Darknet 103/8	Blackhole Address Space Data
+272	Darknet 104/8	Blackhole Address Space Data
+273	syn-flood-attack	Traffic Flow Data
+274	internet_address_survey_reprobing_it39c-20110308	Address Space Allocation Data
+275	internet_address_survey_reprobing_it39w-20110322	Address Space Allocation Data
+276	ITDK 2011-04	Internet Topology Data
+277	internet_address_survey_reprobing_it40w-20110406	Address Space Allocation Data
+278	internet_address_census_it40w-20110406	Address Space Allocation Data
+279	internet_address_census_it40c-20110406	Address Space Allocation Data
+280	NCCDC 2011	Synthetically Generated Data
+281	internet_address_survey_reprobing_it40c-20110420	Address Space Allocation Data
+282	internet_address_survey_reprobing_it41w-20110520	Address Space Allocation Data
+283	internet_address_census_it41w-20110520	Address Space Allocation Data
+284	internet_address_census_it41c-20110520	Address Space Allocation Data
+285	internet_address_survey_reprobing_it41c-20110606	Address Space Allocation Data
+286	internet_address_census_it42c-20110712	Address Space Allocation Data
+287	DoS_80-20110715	IP Packet Headers
+288	internet_address_census_it42w-20110726	Address Space Allocation Data
+289	internet_address_survey_reprobing_it42w-20110726	Address Space Allocation Data
+290	internet_address_survey_reprobing_it42c-20110809	Address Space Allocation Data
+291	as_to_org_mapping_inferred_truth-20110901	Internet Topology Data
+292	internet_address_history_standing_w-20110913	Address Space Allocation Data
+293	internet_address_census_it43w-20110913	Address Space Allocation Data
+294	internet_address_survey_reprobing_it43w-20110913	Address Space Allocation Data
+295	internet_address_census_it43c-20110913	Address Space Allocation Data
+296	internet_address_census_it43j-20110913	Address Space Allocation Data
+297	internet_address_survey_reprobing_it43c-20110927	Address Space Allocation Data
+298	internet_address_survey_reprobing_it43j-20111012	Address Space Allocation Data
+299	ITDK 2011-10	Internet Topology Data
+300	internet_address_census_it44w-20111102	Address Space Allocation Data
+301	internet_address_census_it44c-20111102	Address Space Allocation Data
+302	internet_address_census_it44j-20111102	Address Space Allocation Data
+303	internet_address_survey_reprobing_it44w-20111102	Address Space Allocation Data
+304	internet_address_survey_reprobing_it44c-20111116	Address Space Allocation Data
+305	internet_address_survey_reprobing_it44j-20111205	Address Space Allocation Data
+306	geoloc_128_187_195-20120101	Internet Topology Data
+307	geoloc_71_88_112-20120101	Internet Topology Data
+308	geoloc_84_98_118-20120101	Internet Topology Data
+309	Patch Tuesday Dataset	Blackhole Address Space Data
+310	internet_address_census_it45c-20120102	Address Space Allocation Data
+311	internet_address_census_it45j-20120102	Address Space Allocation Data
+312	internet_address_census_it45w-20120102	Address Space Allocation Data
+313	internet_address_survey_reprobing_it45c-20120114	Address Space Allocation Data
+314	geoloc_178_186_188_189_202_203-20120201	Internet Topology Data
+315	geoloc_193_194_216_217_218_219-20120201	Internet Topology Data
+316	geoloc_63_64_83_85_101_106-20120201	Internet Topology Data
+317	geoloc_1_2_12_14_24_31_121_192_196-20120201	Internet Topology Data
+318	internet_address_survey_reprobing_it45j-20120201	Address Space Allocation Data
+319	internet_address_survey_reprobing_it45w-20120215	Address Space Allocation Data
+320	geoloc_65_67_77_78_120_123-20120301	Internet Topology Data
+321	geoloc_79_80_117_122_129_131-20120301	Internet Topology Data
+322	internet_address_census_it46w-20120309	Address Space Allocation Data
+323	internet_address_survey_reprobing_it46w-20120309	Address Space Allocation Data
+324	internet_address_census_it46c-20120309	Address Space Allocation Data
+325	internet_address_census_it46j-20120309	Address Space Allocation Data
+326	internet_address_survey_reprobing_it46c-20120329	Address Space Allocation Data
+327	geoloc_66_76_81_82_116_119-20120401	Internet Topology Data
+328	geoloc_68_72_86_87_124_125-20120401	Internet Topology Data
+329	Anycast_Enumeration_from_PlanetLab_to_TLDns_20120402	Internet Topology Data
+330	internet_address_survey_reprobing_it46j-20120413	Address Space Allocation Data
+331	Flashback Botnet Sinkhole Connection Data	Sinkhole Data
+332	internet_address_census_it47w-20120427	Address Space Allocation Data
+333	internet_address_census_it47c-20120427	Address Space Allocation Data
+334	internet_address_census_it47j-20120427	Address Space Allocation Data
+335	internet_address_survey_reprobing_it47w-20120427	Address Space Allocation Data
+336	Anycast_Enumeration_from_rDNS_to_AS112-20120504	Internet Topology Data
+337	internet_address_survey_reprobing_it47c-20120513	Address Space Allocation Data
+338	internet_address_survey_reprobing_it47j-20120529	Address Space Allocation Data
+339	geoloc_75_93_94_99_114_115-20120601	Internet Topology Data
+340	internet_address_survey_reprobing_it48c-20120629	Address Space Allocation Data
+341	geoloc_89_90_96_97_113_126-20120701	Internet Topology Data
+342	ITDK 2012-07	Internet Topology Data
+343	internet_address_survey_reprobing_it48j-20120717	Address Space Allocation Data
+344	internet_address_census_it49w-20120731	Address Space Allocation Data
+345	internet_address_census_it48w-20120615	Address Space Allocation Data
+346	internet_address_survey_reprobing_it48w-20120615	Address Space Allocation Data
+347	internet_address_census_it48j-20120615	Address Space Allocation Data
+348	internet_address_census_it48c-20120618	Address Space Allocation Data
+349	PAM13 dataset (Reputation Block Lists)	Traffic Flow Data
+350	internet_address_census_it49c-20120731	Address Space Allocation Data
+351	internet_address_census_it49j-20120731	Address Space Allocation Data
+352	geoloc_5_46_50_58_59_62_108-20120801	Internet Topology Data
+353	internet_address_survey_reprobing_it49w-20120802	Address Space Allocation Data
+354	internet_address_survey_reprobing_it49c-20120817	Address Space Allocation Data
+355	internet_address_census_it50j-20120926	Address Space Allocation Data
+356	geoloc_49_60_61_73_74_95_176-20121001	Internet Topology Data
+357	internet_address_survey_reprobing_it50c-20121011	Address Space Allocation Data
+358	internet_address_survey_reprobing_it50j-20121027	Address Space Allocation Data
+359	internet_address_survey_reprobing_it51w-20121116	Address Space Allocation Data
+360	Conficker Botnet Sinkhole Connection Data	Sinkhole Data
+361	internet_address_survey_reprobing_it49j-20120902	Address Space Allocation Data
+362	internet_address_census_it50w-20120926	Address Space Allocation Data
+363	internet_address_survey_reprobing_it50w-20120926	Address Space Allocation Data
+364	internet_address_census_it50c-20120926	Address Space Allocation Data
+365	internet_address_census_it51w-20121116	Address Space Allocation Data
+366	internet_address_census_it51c-20121116	Address Space Allocation Data
+367	internet_address_census_it51j-20121116	Address Space Allocation Data
+368	internet_address_survey_reprobing_it51c-20121201	Address Space Allocation Data
+369	internet_address_survey_reprobing_it51j-20121217	Address Space Allocation Data
+370	internet_address_census_it52w-20130102	Address Space Allocation Data
+371	internet_address_census_it52c-20130102	Address Space Allocation Data
+372	internet_address_census_it52j-20130102	Address Space Allocation Data
+373	internet_address_survey_reprobing_it52w-20130102	Address Space Allocation Data
+374	internet_address_survey_reprobing_it52c-20130116	Address Space Allocation Data
+375	geoloc_69_70_91_92_110_111_128-20130201	Internet Topology Data
+376	geoloc_166_167_168_169_172_179_210_212_213_220_221_222_223-20130201	Internet Topology Data
+377	geoloc_196_197_198_199_200_201_204_205_206_207_208_209-20130201	Internet Topology Data
+378	geoloc_23_27_36_37_38_39_41_42_170_171_173_174_175_180_181-20130201	Internet Topology Data
+379	internet_address_survey_reprobing_it52j-20130201	Address Space Allocation Data
+380	internet_address_census_it53w-20130222	Address Space Allocation Data
+381	internet_address_census_it53c-20130222	Address Space Allocation Data
+382	internet_address_census_it53j-20130222	Address Space Allocation Data
+383	internet_address_survey_reprobing_it53w-20130222	Address Space Allocation Data
+384	geoloc_210_212_213_220_221_222_223-20130301	Internet Topology Data
+385	geoloc_177_182_183_184_185_190_191_211_214_215-20130301	Internet Topology Data
+386	geoloc_sparse_prefixes-20130301	Internet Topology Data
+387	internet_address_survey_reprobing_it53c-20130311	Address Space Allocation Data
+388	internet_address_survey_reprobing_it53j-20130326	Address Space Allocation Data
+389	ITDK 2013-04	Internet Topology Data
+390	NCCDC 2013	Synthetically Generated Data
+391	internet_address_census_it54w-20130430	Address Space Allocation Data
+392	internet_address_survey_reprobing_it54w-20130430	Address Space Allocation Data
+393	internet_address_census_it54c-20130430	Address Space Allocation Data
+394	internet_address_census_it54j-20130430	Address Space Allocation Data
+395	internet_address_survey_reprobing_it54c-20130524	Address Space Allocation Data
+396	internet_address_survey_reprobing_it54j-20130618	Address Space Allocation Data

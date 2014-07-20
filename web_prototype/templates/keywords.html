@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="/static/css/style.css" media="screen" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/uniform.css" media="screen" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/static/js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.tools.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="/static/js/main.js"></script>
+    <script>
+    </script>
+</head>
+<body>
+
+<div class="TTWForm-container" class="TTWForm">
+        <div id="field5-container" class="field f_100 radio-group ui-resizable-disabled ui-state-disabled">
+            <h1>
+                All keywords
+            </h1>
+
+            <div class="clearfix">
+                {%for headword in keywords.all%}
+                    <div class="clearfix">
+                        <p>
+                            <h3>
+                                {{headword}} ({{keywords.all[headword]|length}})
+                            </h3>
+                            {% for keyword in keywords.all[headword] %}
+                                <a href="/registration/{{ dataset_ids[keyword[0]] }}">{{ keyword[1] }}</a>
+                            {% endfor %}
+                            <br/>
+                        </p>
+                    </div>
+                {%endfor%}
+            </div>
+
+        </div>
+</div>
+
+</body>
+</html>

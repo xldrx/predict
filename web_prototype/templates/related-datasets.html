@@ -1,0 +1,16 @@
+{%for dataset in datasets%}
+    <div class="clearfix">
+        <p>
+            <label>
+                <a href="/registration/{{dataset.index}}"> {{dataset.name}}</a>
+            </label>
+            <span class="option-title error">{{dataset.similarity}}</span>
+            <br/>{{dataset.short_desc}}
+
+            {% for conflict in dataset.conflicts %}
+                <br/>   <span style="color: red;">{{ conflict }} </span>
+            {% endfor %}
+
+        </p>
+    </div>
+{%endfor%}
