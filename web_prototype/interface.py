@@ -95,6 +95,17 @@ def get_all_keywords():
     dataset_ids = dict([(dataset['name'], index) for index, dataset in enumerate(iotools.load_datasets())])
     return render_template('keywords.html', keywords=keywords, dataset_ids=dataset_ids)
 
+@app.route("/search")
+def search():
+    return "TODO" #TODO
+
+
+@app.route("/discovery")
+def discovery():
+    return "TODO" #TODO
+
+
+
 
 @app.route("/user-study")
 def get_all_keywords():
@@ -132,4 +143,4 @@ def newline2br(s):
 
 if __name__ == '__main__':
     iotools.pre_load()
-    app.run(port=31337, debug=True)
+    app.run(port=31337, debug=False)
