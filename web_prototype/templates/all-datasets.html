@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% set title = "PREDICT Datasets" %}
+
+{% block body1 %}
+{% endblock %}
+
+{% block body2 %}
+    <div class="row" id="top">
+        <div class="col-lg-5">
+            <div class="jumbotron">
+                Categories
+                {% for category in dataset_dict %}
+                    <small><br/><a href="#C{{ loop.index }}">{{ category }}</a></small>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            {% for category in dataset_dict %}
+                <div id="C{{ loop.index }}"><br/></div>
+                <h1>
+                    {{ category }}
+                </h1>
+
+                {% set datasets = dataset_dict[category] %}
+                {%for dataset in datasets%}
+                    <div><p>
+                        <label>
+                            <a href="/registration/{{dataset.index}}"> {{dataset.name}} </a>
+                        </label>
+                        <br/>{{ dataset.short_desc }}
+
+                        {% for conflict in dataset.conflicts %}
+                            {% if loop.first %}
+                                <ul>
+                            {% endif %}
+
+                            <li style="color: red;">{{ conflict }} </li>
+
+                            {% if loop.last %}
+                                </ul>
+                            {% endif %}
+                        {% endfor %}
+
+                    </p></div>
+                {% endfor %}
+                <a class="btn btn-sm" href="#top">Back to top</a><br/><br/>
+
+            {% endfor %}
+        </div>
+  </div>
+{% endblock %}

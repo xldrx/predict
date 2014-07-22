@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block head %}
+ <script>
+        function load_keywords(load_all) {
+            var values = {};
+            values['name']=$('#name').val();
+            values['long_desc']=$('#long_desc').val();
+            values['short_desc']=$('#short_desc').val();
+            $("#key_button").val("In progress ...");
+            var req = $.ajax({
+                url: '/get-keywords',
+                type: 'post',
+                data: values});
+            req.done( function(data){
+                $("#keywords").val(data);
+                if (load_all==true){
+                    load_similarities();
+                    load_related_datasets();
+                }
+            });
+            req.always( function(){
+                $("#key_button").val("Suggest Keywords");
+            });
+        }
+
+        function load_similarities(old_style) {
+            var values = {};
+            values['keywords']=$('#keywords').val()
+            if (old_style==true){
+                values['old_style']=1;
+            }
+            $("#sim_button").val("In progress ...");
+
+            var req = $.ajax({
+                url: '/get-similarity',
+                type: 'post',
+                data: values});
+
+            req.done( function(data){
+                    obj = JSON.parse(data);
+                    for (var cid in obj){
+                        $("#cat-"+cid+"-percent").text(obj[cid]);
+                    }
+                });
+            req.always( function(){
+                $("#sim_button").val("Suggest Categories");
+            });
+        }
+        function load_related_datasets(old_style) {
+            var values = {};
+            values['keywords']=$('#keywords').val()
+            if (old_style==true){
+                values['old_style']=1;
+            }
+            $("#rel-button").val("In progress ...");
+
+            var req = $.ajax({
+                url: '/get-related-datasets',
+                type: 'post',
+                data: values});
+
+            req.done( function(data){
+                    $("#related-datasets").html(data)
+                });
+            req.always( function(){
+                $("#rel-button").val("Suggest Related Datasets");
+            });
+        }
+    </script>
+{% endblock %}
+
+{% set title = "{{ dataset.name }}" %}
+{% set body_title = "PREDICT" %}
+{% set body_desc = "An RTI Project" %}
+
+
+
+{% block body2 %}
+
+<div class="TTWForm-container">
+
+
+    <form name="dataset-form"  class="TTWForm ui-sortable-disabled" method="post"
+          novalidate="">
+
+
+        <div id="field1-container" class="field f_100 ui-resizable-disabled ui-state-disabled">
+            <label for="name">
+                Dataset Name
+            </label>
+            <input type="text" name="name" id="name" required="required" value="{{dataset.name}}">
+        </div>
+
+
+        <div id="field2-container" class="field f_100 ui-resizable-disabled ui-state-disabled">
+            <label for="short_desc">
+                Short Description
+            </label>
+            <textarea rows="5" cols="20" name="short_desc" id="short_desc" required="required">{{dataset.short_desc}}</textarea>
+        </div>
+
+
+        <div id="field3-container" class="field f_100 ui-resizable-disabled ui-state-disabled">
+            <label for="long_desc">
+                Long Description
+            </label>
+            <textarea rows="5" cols="20" name="long_desc" id="long_desc" required="required" style="overflow:scroll">{{ dataset.long_desc }}</textarea>
+        </div>
+
+
+        <div id="field7-container" class="field f_100 ui-resizable-disabled ui-state-disabled">
+            <div class="field f_100 clearfix submit">
+                <input id="key_button" type="submit" value="Suggest Keywords" onclick="javascript:load_keywords(true); return false;">
+            </div>
+            <label for="keywords">
+                Keywords
+            </label>
+            <textarea rows="5" cols="20" name="keywords" id="keywords" required="required" style="overflow:scroll">{{dataset.keywords | join("\n")}}</textarea>
+        </div>
+
+
+        <div id="field4-container" class="field f_100 radio-group ui-resizable-disabled ui-state-disabled">
+            <label for="field4-1">
+                Category
+            </label>
+
+            <div class="field f_100 clearfix submit">
+                <input id="sim_button" type="submit" value="Suggest Categories" onclick="javascript:load_similarities(); return false;">
+            </div>
+
+
+            {% for cat in cats%}
+            <div class="option clearfix">
+                <input type="radio" name="category" id="cat-{{cat}}" value="{{cats[cat]}}" {% if cats[cat]== dataset.category %} {{ 'checked' }} {% endif %}>
+                    <span class="option-title">
+                         {{cats[cat]}}
+                    </span>
+                   <span class="option-title error" id="cat-{{cat}}-percent">
+
+                    </span>
+            </div>
+            {% endfor %}
+
+        </div>
+
+
+        <div id="field5-container" class="field f_100 radio-group ui-resizable-disabled ui-state-disabled">
+            <label for="field5-1">
+                Related Datasets
+            </label>
+
+            <div class="field f_100 clearfix submit">
+                <input type="submit" value="Suggest Related Datasets" id="rel-button" onclick="javascript:load_related_datasets(); return false;">
+            </div>
+
+            <div class="clearfix" id="related-datasets">
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<script>
+    if ($("#name").val()!=""){
+{#        load_keywords(true);#}
+        load_similarities(true);
+        load_related_datasets(true);
+    }
+</script>
+
+{% endblock %}

@@ -1,27 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title></title>
-    <link href="/static/css/style.css" media="screen" rel="stylesheet" type="text/css"/>
-    <link href="/static/css/uniform.css" media="screen" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="/static/js/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.tools.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.uniform.min.js"></script>
-    <script type="text/javascript" src="/static/js/main.js"></script>
-    <script>
-    </script>
-</head>
-<body>
+{% extends "base.html" %}
 
-<div class="TTWForm-container" class="TTWForm">
-    <a href="/registration">Registration Form</a><br/>
-    <a href="/all">Datasets</a><br/>
-    <a href="/conflicts">Conflicts</a><br/>
-    <a href="/categories">Categories</a><br/>
-    <a href="/user-study">User Study</a><br/>
-    <a href="/keywords">Keywords</a><br/>
-</div>
+{% set title = "PREDICT" %}
+{% set body_title = "PREDICT" %}
+{% set body_desc = "An RTI Project" %}
 
-</body>
-</html>
+{% block body2 %}
+    <div class="row">
+        <div class="col-lg-3">
+          <h2>Datasets</h2>
+          <p>
+            <a class="btn btn-primary btn-lg" href="/all-datasets">Datasets</a><br/><br/>
+            <a class="btn btn-primary btn-lg" href="/dataset-keywords">Dataset Keywords</a><br/><br/>
+          </p>
+        </div>
+        <div class="col-lg-3">
+          <h2>Keywords</h2>
+            <a class="btn btn-primary btn-lg" href="/keyword-discovery">Keyword Discovery</a><br/><br/>
+          <p>
+          </p>
+        </div>
+        <div class="col-lg-3">
+          <h2>Ontology</h2>
+          <p>
+          </p>
+        </div>
+        <div class="col-lg-3">
+          <h2>Product</h2>
+          <p>
+            <a class="btn btn-primary btn-lg" href="/registration">Registration Form</a><br/><br/>
+            <a class="btn btn-primary btn-lg" href="/conflicts">Conflicts</a><br/><br/>
+            <a class="btn btn-primary btn-lg" href="/user-study">User Study</a><br/><br/>
+          </p>
+        </div>
+  </div>
+
+
+
+{% endblock %}

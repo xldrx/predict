@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% set title = "Keyword" %}
+
+{% block head %}
+    <style>
+
+        .bar {
+            fill: steelblue;
+        }
+
+        .bar:hover {
+            fill: brown;
+        }
+
+        .axis {
+            font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .x.axis path {
+            display: none;
+        }
+
+    </style>
+    <script src="/static/new/js/vendor/d3.v3.min.js"></script>
+
+{% endblock %}
+
+{% block body1 %}
+    {% if keyword %}
+        {% set value = keyword %}
+    {% else %}
+        {% set value = "" %}
+    {% endif %}
+
+    <div class="container">
+        <div class="jumbotron">
+            <form action="" method="post">
+                <input type="search" id="keyword" name="keyword" placeholder="Keyword to Research" value="{{ value }}" style="width: 50%" list="keywords"/>
+                <datalist id="keywords">
+                    {% for key in suggestions %}
+                    <option value="{{ key }}">
+                    {% endfor %}
+                </datalist>
+
+                <br/><input type="submit" class="btn-primary btn btn-lg">
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body2 %}
+    <div class="row">
+        {% if keyword %}
+            <div class="col-lg-12">
+                <h1>Results for <em>{{ keyword }}</em> </h1>
+                <br/>
+                <p>
+                <h3>
+                    Headwords:
+                </h3>
+                {% for item in result.headword %}
+                    {{ item }} <br/>
+                {% endfor %}
+                </p>
+                <p>
+                <h3>
+                    Stopword?:
+                </h3>
+                {{ result.stopword }}
+                </p>
+
+                <p>
+                <h3>
+                    SANS Dictionary:
+                </h3>
+                {% for item in result.sans %}
+                    <strong>{{ item.name }} </strong><br/>
+                    {{ item.definition }} <br/> <br/>
+                {% endfor %}
+                </p>
+
+                <p>
+                <h3>
+                    PREDICT Keywords:
+                </h3>
+                {% for item in result.predict[:15] %}
+                    <a href="/keyword-discovery?keyword={{ item[0] }}" class="btn btn-primary btn-small">{{ item[0] }}</a>
+                {% endfor %}
+                </p>
+
+                <p>
+                <h3>
+                    Symantec Dictionary:
+                </h3>
+                <p>
+                    {% for item in result.symantec_head %}
+                    <a href="/keyword-discovery?keyword={{ item }}" class="btn btn-primary btn-small">{{ item }}</a>
+                {% endfor %}
+                </p>
+                {% for item in result.symantec %}
+                    <strong>{{ item.name }} </strong><br/>
+                    {{ item.types }} <br/> <br/>
+                {% endfor %}
+                </p>
+
+                <p>
+                <h3>
+                    CAPEC Knowledgebase:
+                </h3>
+                <p>
+                    {% for item in result.capec_head %}
+                    <a href="/keyword-discovery?keyword={{ item }}" class="btn btn-primary btn-small">{{ item }}</a>
+                {% endfor %}
+                </p>
+                {% for item in result.capec %}
+                    <strong>{{ item.Name }} </strong><br/>
+                    {{ item.Description }} <br/> <br/>
+                {% endfor %}
+                </p>
+
+                <p>
+                <h3>
+                    Online Query:
+                </h3>
+                <a id="load_button" class="btn btn-primary btn-lg" onclick="load_plot(); return false;">Load</a>
+                <div id="wait_msg" style="display: none">Please Wait ...</div>
+                <div id="plot"></div>
+                </p>
+
+            </div>
+        {% endif %}
+        <script>
+
+            function load_plot(){
+                $("#load_button").hide();
+                $("#wait_msg").show();
+                $.post( "/keyword-discovery-online", { keyword: "{{ keyword }}" })
+                        .done(function( data ) {
+                            show_plot(JSON.parse(data));
+                            $("#wait_msg").hide();
+                        });
+            }
+
+            function show_plot(data){
+
+                var margin = {top: 20, right: 20, bottom: 30, left: 40},
+                        width = 500,
+                        height = 300;
+
+                var x = d3.scale.ordinal()
+                        .rangeRoundBands([0, width], .1);
+
+                var y = d3.scale.linear()
+                        .range([height, 0]);
+
+                var xAxis = d3.svg.axis()
+                        .scale(x)
+                        .orient("bottom");
+
+                var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .orient("left");
+
+                var svg = d3.select("#plot").append("svg")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
+                        .append("g")
+                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+                x.domain(data.map(function(d) { return d.Name; }));
+                y.domain([0, d3.max(data, function(d) { return d.Frequency; })]);
+
+                svg.append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(0," + height + ")")
+                        .call(xAxis);
+
+                svg.append("g")
+                        .attr("class", "y axis")
+                        .call(yAxis)
+                        .append("text")
+                        .attr("transform", "rotate(-90)")
+                        .attr("y", 6)
+                        .attr("dy", ".71em")
+                        .style("text-anchor", "end")
+                        .text("Frequency");
+
+                svg.selectAll(".bar")
+                        .data(data)
+                        .enter().append("rect")
+                        .attr("class", "bar")
+                        .attr("x", function(d) { return x(d.Name); })
+                        .attr("width", x.rangeBand())
+                        .attr("y", function(d) { return y(d.Frequency); })
+                        .attr("height", function(d) { return height - y(d.Frequency); })
+                        .append("text")
+                        .attr("y", height - 4)
+                        .text(function(d) { return d.Frequency; });
+
+                function type(d) {
+                    d.Frequency = +d.Frequency;
+                    return d;
+                }
+            }
+        </script>
+    </div>
+
+
+
+{% endblock %}

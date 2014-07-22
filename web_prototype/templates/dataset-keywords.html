@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% set title = "PREDICT Datasets" %}
+
+{% block body1 %}
+{% endblock %}
+
+{% block body2 %}
+<div class="row" id="top">
+    <div class="col-lg-6">
+    {%for headword in keywords.all%}
+        {% if loop.index % 2 == 0 %}
+        <div class="jumbotron">
+            <p>
+            <small>
+
+                <a href="/keyword-discovery?keyword={{headword}}">{{headword}}</a> ({{keywords.all[headword]|length}})
+                <br/>
+                {% for keyword in keywords.all[headword] %}
+                   <a class="btn btn-sm btn-primary" href="/registration/{{ dataset_ids[keyword] }}">{{ keyword }}</a>
+                {% endfor %}
+            </small>
+            </p>
+        </div>
+        <br/>
+       {% endif %}
+   {%endfor%}
+    </div>
+    <div class="col-lg-6">
+    {%for headword in keywords.all%}
+        {% if loop.index % 2 == 1 %}
+        <div class="jumbotron">
+            <p>
+            <small>
+                {{headword}} ({{keywords.all[headword]|length}})
+                <br/>
+                {% for keyword in keywords.all[headword] %}
+                   <a class="btn btn-sm btn-primary" href="/registration/{{ dataset_ids[keyword] }}">{{ keyword }}</a>
+                {% endfor %}
+            </small>
+            </p>
+        </div>
+        <br/>
+       {% endif %}
+   {%endfor%}
+    </div>
+</div>
+{% endblock %}

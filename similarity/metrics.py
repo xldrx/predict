@@ -98,7 +98,7 @@ def minmax_similarity_items():
                     print "%s\t%s\n\t\min: %%%4.2f max: %%%4.2f\n" % (name1, name2, min_val, max_val)
 
 
-def get_dataset_compatibility(keyword_list, use_numbering_for_key=False, new_keywords = True):
+def get_dataset_compatibility(keyword_list, use_numbering_for_key=False, new_keywords=True):
     options = [df_simple_list, sf_simple]
     category_dict = similarity.get_category_dict()
     similarity_dict = {}
@@ -119,7 +119,7 @@ def get_dataset_compatibility(keyword_list, use_numbering_for_key=False, new_key
         return similarity_dict
 
 
-def get_related_datasets(keyword_list, new_keywords = True):
+def get_related_datasets(keyword_list, new_keywords=True):
     options = [df_simple_list, sf_simple]
     dataset_dict = iotools.load_datasets_dict()
     similarity_list = []
@@ -134,8 +134,8 @@ def get_related_datasets(keyword_list, new_keywords = True):
     return similarity_list
 
 
-def get_related_datasets_for_dataset(dataset, new_keywords = True):
-    options = [[df_new_keywords_list, sf_simple],[df_old_keywords_list, sf_simple]]
+def get_related_datasets_for_dataset(dataset, new_keywords=True):
+    options = [[df_new_keywords_list, sf_simple], [df_old_keywords_list, sf_simple]]
     dataset_dict = iotools.load_datasets_dict()
     similarity_list = []
     for name, dataset2 in dataset_dict.items():
@@ -152,8 +152,8 @@ def get_related_datasets_for_dataset(dataset, new_keywords = True):
 
 
 if __name__ == '__main__':
-#similarity_list_groups()
-#    similarity_items()
+    #similarity_list_groups()
+    #    similarity_items()
     minmax_similarity_items()
 
 

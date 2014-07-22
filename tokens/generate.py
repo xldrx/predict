@@ -58,6 +58,18 @@ def check_word_description(word, wtype):
     return True
 
 
+def is_stopword(word):
+    if word.lower() in stopwords:
+        return True
+
+    if word.lower() in commonwords:
+        return True
+
+    if get_head_word(word, "Other") in commonwords:
+        return True
+
+    return False
+
 def check_word_name(word, wtype):
     word = word.strip()
 
@@ -76,14 +88,8 @@ def check_word_name(word, wtype):
     if 2 > len(word):
         return False
 
-    if word.lower() in stopwords:
-        return False
-
-    if word.lower() in commonwords:
-        return False
-
-    if get_head_word(word, "Other") in commonwords:
-        return False
+    # if is_stopword(word): #TODO
+    #     return False
 
     if not any(c.isalpha() for c in word):
         return False

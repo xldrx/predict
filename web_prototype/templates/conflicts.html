@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% set title = "PREDICT Datasets" %}
+
+{% block body1 %}
+{% endblock %}
+
+{% block body2 %}
+    <div class="row" id="top">
+        <div class="col-lg-7">
+            {% for category in categories %}
+                <div id="C{{ loop.index }}"><br/></div>
+                <h1>
+                    {{ category }}
+                </h1>
+
+                {% set datasets = categories[category] %}
+                {%for dataset in datasets%}
+                    <div><p>
+                        <label>
+                            <a href="/registration/{{dataset.index}}"> {{dataset.name}} </a>
+                        </label>
+                        <br/>{{ dataset.short_desc }}
+                    </p></div>
+                {% endfor %}
+                <a class="btn btn-sm" href="#top">Back to top</a><br/><br/>
+
+            {% endfor %}
+        </div>
+        <div class="col-lg-5">
+            <div class="jumbotron">
+                Categories
+                {% for category in categories %}
+                    <small><br/><a href="#C{{ loop.index }}">{{ category }}</a></small>
+                {% endfor %}
+
+            </div>
+        </div>
+  </div>
+{% endblock %}

@@ -1,96 +1,106 @@
-from collections import OrderedDict
-import os
-import re
+#! /usr/bin/env python -u
+# coding=utf-8
 from time import sleep
-from math import log
-import requests
+import re
+import traceback
+import json
+from nltk import OrderedDict
+from selenium.webdriver.support import wait
 
 __author__ = 'xl'
 
-import json
-import urllib
+from selenium.webdriver.phantomjs.webdriver import WebDriver
+from selenium.webdriver.common.keys import Keys
 
 
-class Search(object):
-    def __init__(self):
-        self.last_url = "https://www.google.com/"
-        self.session = requests.session()
+def get_number(driver):
+    if driver.page_source.find("did not match any documents.") >= 0:
+        return 0
+    try:
+        text = driver.find_element_by_id("resultStats").text
+        result = re.search("([\d,]*?) result", text).group(1)
+        return int(result.replace(",", ""))
+    except:
+        return 0
 
-    def get_number_of_results(self, searchfor):
-        try:
-            payload = {
-                'q': searchfor,
-                'hl': 'en',
-                'btnG': 'Google Search',
-                'inurl': 'https',
-            }
 
-            self.session.headers.update({'referer': self.last_url})
+def search_google(queries):
+    driver = None
+    try:
+        # driver = webdriver.Remote(
+        #     command_executor='http://127.0.0.1:4444/wd/hub',
+        #     desired_capabilities=DesiredCapabilities.CHROME)
+        # driver = webdriver.Chrome('./chromedriver', chrome_options=["--no-startup-window"])
+        driver = WebDriver("./filtering/phantomjs")
 
-            r = self.session.get("https://www.google.com/search", params=payload)
-            self.last_url = r.url
-            # print self.session.cookies
-            # print r.url
-            if r.text.find("did not match any documents.") >= 0:
-                return 0
-            result = re.search("([\d,]*?) results?</div>", r.text).group(1)
-            return int(result.replace(",", ""))
-        except Exception as ex:
-            try:
-                if r:
-                    print r.url
-                    print r.text
-            finally:
-                raise ex
+        driver.get("http://www.google.com")
+        w = wait.WebDriverWait(driver, 5)
+        sleep(1)
+        w.until(lambda x: driver.execute_script("return document.readyState;") == "complete")
+
+        # elem = driver.find_elements_by_name("q")[0]
+        # elem.click()
+        # elem.send_keys(queries[0]["q"])
+        # elem.send_keys(Keys.RETURN)
+        # sleep(1)
+        # w.until(lambda x: driver.execute_script("return document.readyState;") == "complete")
+        # queries[0]["response"] = get_number(driver)
+
+        for keyword in queries:
+            elem = driver.find_elements_by_name("q")[0]
+            elem.click()
+            elem.clear()
+            elem.send_keys(keyword["q"])
+            elem.send_keys(Keys.RETURN)
+            sleep(1)
+            w.until(lambda x: driver.execute_script("return document.readyState;") == "complete")
+            keyword["response"] = get_number(driver)
+            driver.save_screenshot("%s.png" % keyword["pr"])
+        # return ret
+
+    except:
+        traceback.print_exc()
+        if driver:
+            driver.save_screenshot("test.png")
+
+    finally:
+        if driver:
+            driver.close()
 
 
 def get_matrix(name):
-    s = Search()
     results = OrderedDict()
-    with open("PRs.json", "r") as fp:
+    with open("./filtering/PRs.json", "r") as fp:
         lines = json.load(fp)
     PRs = {}
+
     for line in lines:
         cat = line["cat"]
         if cat not in PRs:
             PRs[cat] = []
         PRs[cat].append(line)
-    val = s.get_number_of_results(name)
-    print "> %10d\t%s" % (val, "General")
-    results["General"] = val
+
+    queries = []
     for pr in sorted(PRs):
-        sleep(10)
-        sites = " " + " OR ".join(["site:%s" % (site["link"],) for site in PRs[pr]])
-        num = s.get_number_of_results(name + sites)
-        print "> %10d\t%s\n  %10d" % (num, pr, num / len(PRs[pr]))
-        results[pr] = num / len(PRs[pr])
-    with open("words/%s.json" % name, "wb") as fp:
-        json.dump(results, fp)
-    with open("words/%s.txt" % name, "wb") as fp:
-        fp.write("\n".join(["%s\t%s" % (key, val) for key, val in results.items()]))
-    for pr in sorted(PRs):
-        sites = ", ".join([site["name"] for site in PRs[pr]])
-        print "%s (%s): %s" % (pr, len(PRs[pr]), sites)
+        index = 0
+        while index < len(PRs[pr]):
+            q = {
+                "pr": pr,
+                "q": name + " " + " OR ".join(["site:%s" % (site["link"],) for site in PRs[pr][index:index + 10]])
+            }
+            queries.append(q)
+            index += 10
+
+    search_google(queries)
+    for query in queries:
+        pr = query['pr']
+        results[pr] = query['response'] + results.get(pr, 0)
+
+    for pr in results:
+        results[pr] /= 1.0 * len(PRs[pr])
+
+    return results
 
 
-for word_file in os.listdir("./words/"):
-    if not word_file.endswith(".json"):
-        continue
-    with open("./words/"+word_file, "r") as fp:
-        word = json.load(fp)
-        print os.path.basename(word_file)[:-5],
-        print "\t",
-        print word["General"],
-        print "\t",
-        print log(word["General"], 2),
-        print "\t",
-        rank = 0
-        for key, val in word.items():
-            if not key.startswith("PR"):
-                continue
-            index = int(key[2:])+1
-            rank+=(3**index)*log(val+1, 2)/1500.0
-        print rank,
-        print "\t",
-        print "\t".join([str(word[key]) for key in sorted(word) if key != "General"])
-
+if __name__ == "__main__":
+    print get_matrix("heartbleed")

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ title }}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="/static/new/css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="/static/new/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/static/new/css/main.css">
+
+        <script src="/static/new/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Home</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+
+          </ul>
+          <form class="navbar-form navbar-right">
+{#            <button type="submit" class="btn btn-success">Sign in</button>#}
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+   {% block body1 %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1>{{ body_title }}</h1>
+        <p>{{ body_desc}}</p>
+      </div>
+    </div>
+    {% endblock %}
+
+    <div class="container">
+      <!-- Example row of columns -->
+    {% block body2 %}
+    {% endblock %}
+      <hr>
+
+      <footer>
+        <p>&copy; Sayed Hadi Hashemi 2014</p>
+      </footer>
+    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/static/new/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+        <script src="/static/new/js/vendor/bootstrap.min.js"></script>
+
+        <script src="/static/new/js/main.js"></script>
+    </body>
+</html>

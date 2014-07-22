@@ -1,0 +1,6 @@
+lxml
+flask
+scrapy
+networkx
+nltk
+jsonpickle

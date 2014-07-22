@@ -8,7 +8,15 @@
             <br/>{{dataset.short_desc}}
 
             {% for conflict in dataset.conflicts %}
-                <br/>   <span style="color: red;">{{ conflict }} </span>
+                {% if loop.first %}
+                    <ul>
+                {% endif %}
+
+                <li style="color: red;">{{ conflict }} </li>
+
+                {% if loop.first %}
+                    </ul>
+                {% endif %}
             {% endfor %}
 
         </p>

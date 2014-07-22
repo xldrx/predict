@@ -2,11 +2,13 @@ from collections import OrderedDict
 import random
 from flask import Flask, render_template, redirect, request
 import jsonpickle
+from filtering import process_keyword
 import similarity
 from similarity.metrics import get_dataset_compatibility, get_related_datasets, get_related_datasets_for_dataset
 from tokens.conflicts import all_conflicts
 from tokens.generate import generate_dataset_keywords_dict
 from utils import iotools
+import json
 
 app = Flask(__name__)
 
@@ -32,6 +34,19 @@ def registration_by_index(index):
         dataset = repo.values()[index]
 
     return registration(dataset)
+
+
+@app.route("/view-dataset/<int:index>")
+def view_by_index(index):
+    dataset = None
+    repo = iotools.load_datasets_dict()
+    if len(repo) > index >= 0:
+        dataset = repo.values()[index]
+
+    cats = {}
+    for cid, cat in enumerate(similarity.get_categories()):
+        cats[cid] = cat
+    return render_template('view-dataset.html', cats=cats, dataset=dataset)
 
 
 @app.route("/get-keywords", methods=['POST'])
@@ -67,71 +82,106 @@ def get_related_datasets_html():
     return render_template('related-datasets.html', datasets=datasets)
 
 
-@app.route("/all")
-def get_all_datasets():
-    return render_template('all.html', datasets=iotools.load_datasets())
-
-
 @app.route("/conflicts")
 def get_all_conflicts():
-    datasets = []
+    datasets = {}
     for name, conflictList in all_conflicts().items():
         row = iotools.load_dataset(name)
         row['conflicts'] = conflictList
-        datasets.append(row)
-    return render_template('all.html', datasets=datasets)
+        category = row['category']
+        if category not in datasets:
+            datasets[category] = []
+        datasets[category].append(row)
+
+    return render_template('all-datasets.html', dataset_dict=datasets)
 
 
-@app.route("/categories")
-def get_all_categories(name=None):
+@app.route("/all-datasets")
+def get_all_datasets():
     categories = similarity.get_category_dict()
-    return render_template('categories.html', categories=categories)
+    return render_template('all-datasets.html', dataset_dict=categories)
 
 
-@app.route("/keywords")
+@app.route("/dataset-keywords")
 def get_all_keywords():
     keywords = iotools.load_keywords_dict()
-    keywords['all'] = OrderedDict([item for item in sorted(keywords['all'].items(), key=lambda x: len(x[1]))])
+    keywords['all'] = OrderedDict(
+        [item for item in sorted(keywords['all'].items(), key=lambda x: len(x[1]), reverse=False)])
+    for key in keywords['all']:
+        keywords['all'][key] = list(set([dataset for dataset, _ in keywords['all'][key]]))
     dataset_ids = dict([(dataset['name'], index) for index, dataset in enumerate(iotools.load_datasets())])
-    return render_template('keywords.html', keywords=keywords, dataset_ids=dataset_ids)
+    return render_template('dataset-keywords.html', keywords=keywords, dataset_ids=dataset_ids)
+
 
 @app.route("/search")
 def search():
-    return "TODO" #TODO
+    return "TODO"  #TODO
 
 
-@app.route("/discovery")
+@app.route("/keyword-discovery", methods=["GET", "POST"])
 def discovery():
-    return "TODO" #TODO
+    keywords = list(iotools.load_keywords_dict()['all'].keys())
+
+    if 'keyword' in request.form:
+        keyword = request.form.get('keyword', None)
+    elif 'keyword' in request.args:
+        keyword = request.args.get('keyword', None)
+    else:
+        keyword = None
+
+    result = {}
+
+    if keyword:
+        result["stopword"] = process_keyword.get_stopword(keyword)
+        result["headword"] = process_keyword.get_headword(keyword)
+        result["sans"] = process_keyword.get_sans(keyword)
+        result["symantec"] = process_keyword.get_symantec(keyword)
+        result["symantec_head"] = process_keyword.get_symantec_head(keyword)
+        result["predict"] = process_keyword.get_predict_keyword(keyword)
+        result["capec"] = process_keyword.get_capec(keyword)
+        result["capec_head"] = process_keyword.get_capec_head(keyword)
+
+    return render_template("keyword-search.html", suggestions=keywords, keyword=keyword, result=result)
 
 
+@app.route("/keyword-discovery-online", methods=["POST"])
+def get_online_report():
+    keyword = request.form.get('keyword', None)
+
+    data = []
+    for key, freq in process_keyword.get_google_ranking(keyword).items():
+        data.append({"Name": key, "Frequency": freq})
+
+    print data
+    return json.dumps(data)
 
 
 @app.route("/user-study")
-def get_all_keywords():
+def user_study():
     repo = iotools.load_datasets()
     dataset = random.choice(repo)
-    while dataset['category']=="Address Space Allocation Data":
+    while dataset['category'] == "Address Space Allocation Data":
         dataset = random.choice(repo)
 
     dataset_index = repo.index(dataset)
     print dataset['category']
 
     related_datasets = get_related_datasets_for_dataset(dataset, True)
-    related1=[]
+    related1 = []
     for data, val in related_datasets[:10]:
-        data['index']=repo.index(data)
+        data['index'] = repo.index(data)
         data['similarity'] = "%3.0f%%" % (val * 100,)
         related1.append(data)
 
     related_datasets = get_related_datasets_for_dataset(dataset, False)
-    related2=[]
+    related2 = []
     for data, val in related_datasets[:10]:
-        data['index']=repo.index(data)
+        data['index'] = repo.index(data)
         data['similarity'] = "%3.0f%%" % (val * 100,)
         related2.append(data)
 
-    return render_template('user-study.html', dataset=dataset, dataset_index=dataset_index, related1=related1, related2=related2)
+    return render_template('user-study.html', dataset=dataset, dataset_index=dataset_index, related1=related1,
+                           related2=related2)
 
 
 @app.template_filter('newline2br')
@@ -143,4 +193,4 @@ def newline2br(s):
 
 if __name__ == '__main__':
     iotools.pre_load()
-    app.run(port=31337, debug=False)
+    app.run(port=31337, debug=True)
