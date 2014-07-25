@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% set title = "Text Processing" %}
+
+{% block body1 %}
+    {% if not d_title %}
+        {% set d_title = "" %}
+    {% endif %}
+
+    {% if not d_body %}
+        {% set d_body = "" %}
+    {% endif %}
+
+    <div class="container">
+        <div class="jumbotron">
+            <form action="" method="post">
+                <input type="text" id="d_title" name="d_title" placeholder="Dataset Title" value="{{ d_title }}" style="width: 75%"/>
+                <br/>
+                <small>
+                    <textarea id="d_body" name="d_body" rows="5" style="width: 75%">{{ d_body }}</textarea>
+                </small>
+
+                <br/><input type="submit" value="Process" class="btn-primary btn btn-lg">
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body2 %}
+    {% if keywords %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>
+                    Suggested Keywords:
+                </h3>
+                <p>
+                {% for item in keywords %}
+                    <a href="/keyword-discovery?keyword={{ item }}" class="btn btn-primary btn-small">{{ item }}</a>
+                {% endfor %}
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>
+                    Suggested Datasets:
+                </h3>
+                <p>
+                {% for item in related_datasets %}
+                    {{ item.similarity }} - <a class="btn btn-sm btn-primary btn-success" href="/registration/{{ dataset_ids[item.name] }}">{{ item.name }}</a> <br/>
+                {% endfor %}
+                </p>
+            </div>
+
+            <div class="col-lg-6">
+                <h3>
+                    Suggested Categories:
+                </h3>
+                <p>
+                {% for item in categories %}
+                    {{ item.similarity }} - {{ item.name }} <br/>
+                {% endfor %}
+                </p>
+            </div>
+        </div>
+
+
+    {% endif %}
+{% endblock %}

@@ -97,7 +97,9 @@ def check_word_name(word, wtype):
     return True
 
 
-def analyse_description(text):
+def analyse_description(text, check_stop_words=True):
+    if not text:
+        return []
     text = text.replace('/', ', ')
 
     sentences = nltk.sent_tokenize(text)
@@ -110,13 +112,17 @@ def analyse_description(text):
     for word, wtype in postoks:
         if not check_word_description(word, wtype):
             continue
+
+        if check_stop_words and is_stopword(word):
+            continue
+
         head_word = get_head_word(word, wtype)
         ret[head_word] = ret.get(head_word, [])
         ret[head_word].append(word)
     return ret
 
 
-def analyse_name(text):
+def analyse_name(text, check_stop_words=True):
     text = text.replace('_', ' ')
     text = text.replace('-', ' ')
     tokens = nltk.word_tokenize(text)
@@ -126,6 +132,10 @@ def analyse_name(text):
     for word, wtype in postoks:
         if not check_word_name(word, wtype):
             continue
+
+        if check_stop_words and is_stopword(word):
+            continue
+
         head_word = get_head_word(word, wtype)
         ret[head_word] = ret.get(head_word, [])
         ret[head_word].append(word)

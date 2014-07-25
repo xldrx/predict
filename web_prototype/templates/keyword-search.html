@@ -81,6 +81,11 @@
                 <h3>
                     SANS Dictionary:
                 </h3>
+                <p>
+                    {% for item in result.sans_head %}
+                    <a href="/keyword-discovery?keyword={{ item }}" class="btn btn-primary btn-small">{{ item }}</a>
+                {% endfor %}
+                </p>
                 {% for item in result.sans %}
                     <strong>{{ item.name }} </strong><br/>
                     {{ item.definition }} <br/> <br/>

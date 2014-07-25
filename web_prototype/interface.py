@@ -103,6 +103,13 @@ def get_all_datasets():
 
 
 @app.route("/dataset-keywords")
+def get_all_datasets_with_keywords():
+    categories = similarity.get_category_dict()
+    keywords = iotools.load_dataset_keywords_dict()
+    return render_template('datasets-with-keywords.html', dataset_dict=categories, keywords=keywords)
+
+
+@app.route("/keywords")
 def get_all_keywords():
     keywords = iotools.load_keywords_dict()
     keywords['all'] = OrderedDict(
@@ -135,6 +142,7 @@ def discovery():
         result["stopword"] = process_keyword.get_stopword(keyword)
         result["headword"] = process_keyword.get_headword(keyword)
         result["sans"] = process_keyword.get_sans(keyword)
+        result["sans_head"] = process_keyword.get_sans_head(keyword)
         result["symantec"] = process_keyword.get_symantec(keyword)
         result["symantec_head"] = process_keyword.get_symantec_head(keyword)
         result["predict"] = process_keyword.get_predict_keyword(keyword)
@@ -142,6 +150,43 @@ def discovery():
         result["capec_head"] = process_keyword.get_capec_head(keyword)
 
     return render_template("keyword-search.html", suggestions=keywords, keyword=keyword, result=result)
+
+
+@app.route("/text-processing", methods=["GET", "POST"])
+def text_processing():
+    title = request.form.get('d_title', None)
+    body = request.form.get('d_body', None)
+
+    keywords = None
+    categories = None
+    datasets = None
+    dataset_ids = dict([(dataset['name'], index) for index, dataset in enumerate(iotools.load_datasets())])
+
+    if title or body:
+        keywords = generate_dataset_keywords_dict({"name": title, "long_desc": body, "short_desc": ""})
+        keywords = sorted(keywords['all'])
+
+        similarity_dict = get_dataset_compatibility(keywords)
+        categories = []
+        for key, val in sorted(similarity_dict.items(), key=lambda x: x[1], reverse=True):
+            if val > 0:
+                row = {
+                    "name": key,
+                    "similarity": "%4.1f%%" % (val * 100,)
+                }
+                categories.append(row)
+
+        related_datasets = get_related_datasets(keywords)
+        datasets = []
+        for name, val in sorted(related_datasets[:20], key=lambda x: x[1], reverse=True):
+            if val == 0:
+                continue
+            row = iotools.load_dataset(name)
+            row['similarity'] = "%4.1f%%" % (val * 100,)
+            datasets.append(row)
+
+    return render_template("text_processing.html", d_title=title, d_body=body, keywords=keywords,
+                           categories=categories, related_datasets=datasets, dataset_ids=dataset_ids)
 
 
 @app.route("/keyword-discovery-online", methods=["POST"])

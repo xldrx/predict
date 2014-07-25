@@ -17,7 +17,7 @@
                 <a href="/keyword-discovery?keyword={{headword}}">{{headword}}</a> ({{keywords.all[headword]|length}})
                 <br/>
                 {% for keyword in keywords.all[headword] %}
-                   <a class="btn btn-sm btn-primary" href="/registration/{{ dataset_ids[keyword] }}">{{ keyword }}</a>
+                   <a class="btn btn-sm btn-primary btn-success" href="/registration/{{ dataset_ids[keyword] }}">{{ keyword }}</a>
                 {% endfor %}
             </small>
             </p>
@@ -32,10 +32,10 @@
         <div class="jumbotron">
             <p>
             <small>
-                {{headword}} ({{keywords.all[headword]|length}})
+                <a href="/keyword-discovery?keyword={{headword}}">{{headword}}</a> ({{keywords.all[headword]|length}})
                 <br/>
                 {% for keyword in keywords.all[headword] %}
-                   <a class="btn btn-sm btn-primary" href="/registration/{{ dataset_ids[keyword] }}">{{ keyword }}</a>
+                   <a class="btn btn-sm btn-primary btn-success" href="/registration/{{ dataset_ids[keyword] }}">{{ keyword }}</a>
                 {% endfor %}
             </small>
             </p>

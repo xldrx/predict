@@ -1,34 +1,31 @@
 {% extends "base.html" %}
 
 {% set title = "PREDICT" %}
-{% set body_title = "PREDICT" %}
-{% set body_desc = "An RTI Project" %}
+{% set body_title = "Data-Driven Intelligent Analytics of Security-based Repositories" %}
+{% set body_desc = "NSF CCAA Project" %}
 
 {% block body2 %}
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-4">
           <h2>Datasets</h2>
           <p>
-            <a class="btn btn-primary btn-lg" href="/all-datasets">Datasets</a><br/><br/>
+            <a class="btn btn-primary btn-lg" href="/all-datasets">All Datasets</a><br/><br/>
+            <a class="btn btn-primary btn-lg" href="/keywords">All Keywords</a><br/><br/>
             <a class="btn btn-primary btn-lg" href="/dataset-keywords">Dataset Keywords</a><br/><br/>
           </p>
         </div>
-        <div class="col-lg-3">
-          <h2>Keywords</h2>
+        <div class="col-lg-4">
+          <h2>Semantic Analysis</h2>
+            <a class="btn btn-primary btn-lg" href="/text-processing">Text Processing</a><br/><br/>
             <a class="btn btn-primary btn-lg" href="/keyword-discovery">Keyword Discovery</a><br/><br/>
-          <p>
-          </p>
-        </div>
-        <div class="col-lg-3">
-          <h2>Ontology</h2>
-          <p>
-          </p>
-        </div>
-        <div class="col-lg-3">
-          <h2>Product</h2>
-          <p>
-            <a class="btn btn-primary btn-lg" href="/registration">Registration Form</a><br/><br/>
             <a class="btn btn-primary btn-lg" href="/conflicts">Conflicts</a><br/><br/>
+          <p>
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Integration</h2>
+          <p>
+            <a class="btn btn-primary btn-lg" href="/registration">Dataset Entry</a><br/><br/>
             <a class="btn btn-primary btn-lg" href="/user-study">User Study</a><br/><br/>
           </p>
         </div>

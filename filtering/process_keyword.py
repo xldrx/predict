@@ -1,5 +1,6 @@
 #! /usr/bin/env python -u
 # coding=utf-8
+from collections import Counter
 import json
 from filtering import google
 from ontology import capec
@@ -28,6 +29,14 @@ def get_google_ranking(keyword):
     return google.get_matrix(keyword)
 
 
+def get_sans_head(keyword):
+    ret = []
+    for record in get_sans(keyword):
+        ret += tokens.generate.analyse_description(record["definition"], check_stop_words=True)
+
+    return sorted(list(set(ret)))
+
+
 def get_sans(keyword):
     with open("./data/raw/sans.json", "r") as fp:
         sans_db = json.load(fp)
@@ -53,7 +62,10 @@ def get_symantec(keyword):
 
 
 def get_symantec_head(keyword):
-    return list(set([record["types"] for record in get_symantec(keyword)]))
+    ret = [record["types"] for record in get_symantec(keyword) if
+           record["types"] != "Other" and record["types"] and record["types"] != "Removal Information"]
+
+    return sorted(list(set(ret)))
 
 
 def get_predict_keyword(keyword):
@@ -80,9 +92,12 @@ def get_capec_head(keyword):
     for record in get_capec(keyword):
         ret += record["Categories"]
         ret += record["Purposes"]
+        ret += tokens.generate.analyse_description(record["Description"], check_stop_words=True)
 
-    return list(set(ret))
+    counter = Counter(ret)
+    ret = [item[0] for item in counter.items() if item[1] > 1]
+    return ret
 
 
 if __name__ == "__main__":
-    print get_capec_head("sql")
+    print get_capec_head("sql injection")

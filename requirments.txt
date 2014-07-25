@@ -4,3 +4,5 @@ scrapy
 networkx
 nltk
 jsonpickle
+numbpy
+pandas
