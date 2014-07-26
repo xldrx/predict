@@ -6,3 +6,4 @@ nltk
 jsonpickle
 numbpy
 pandas
+selenium

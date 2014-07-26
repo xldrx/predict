@@ -79,7 +79,7 @@
 
                 <p>
                 <h3>
-                    SANS Dictionary:
+                    Glossary:
                 </h3>
                 <p>
                     {% for item in result.sans_head %}
@@ -94,7 +94,7 @@
 
                 <p>
                 <h3>
-                    PREDICT Keywords:
+                    Context Extraction:
                 </h3>
                 {% for item in result.predict[:15] %}
                     <a href="/keyword-discovery?keyword={{ item[0] }}" class="btn btn-primary btn-small">{{ item[0] }}</a>
@@ -103,7 +103,7 @@
 
                 <p>
                 <h3>
-                    Symantec Dictionary:
+                    Malwares:
                 </h3>
                 <p>
                     {% for item in result.symantec_head %}
@@ -118,7 +118,7 @@
 
                 <p>
                 <h3>
-                    CAPEC Knowledgebase:
+                    Attack Patterns:
                 </h3>
                 <p>
                     {% for item in result.capec_head %}
