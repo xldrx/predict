@@ -4,6 +4,6 @@ scrapy
 networkx
 nltk
 jsonpickle
-numbpy
+numpy
 pandas
 selenium
